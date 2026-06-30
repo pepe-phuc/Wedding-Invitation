@@ -460,10 +460,16 @@ section {
 
 .story-heart {
     color: #bfa38a;
-    font-size: 0.75rem;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
     margin-bottom: 0.5rem;
 }
-
+.story-heart svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
 .story-content h3 {
     font-size: 0.85rem;
     letter-spacing: 2px;
@@ -516,11 +522,17 @@ section {
 }
 
 .title-heart {
-    font-size: 0.6rem;
     color: #bfa38a;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-bottom: 0.5rem;
+}
+.title-heart svg {
+    width: 100%;
+    height: 100%;
     display: block;
 }
-
 .events-wrapper {
     display: flex;
     background: rgba(255, 255, 255, 0.04);
@@ -565,11 +577,17 @@ section {
 }
 
 .heart-divider {
-    font-size: 0.6rem;
     color: #bfa38a;
-    margin-bottom: 1.2rem;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-bottom: 0.5rem;
 }
-
+.heart-divider svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
 .event-card .time {
     font-size: 0.85rem;
     letter-spacing: 2px;
@@ -607,12 +625,18 @@ section {
     background: #bfa38a;
     color: #1e251c;
     border-radius: 50%;
-    font-size: 0.65rem;
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 5px;
+}
+
+.center-heart svg {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
 .btn-map {
@@ -1052,11 +1076,20 @@ section {
     .center-divider {
         width: 100%;
         height: 1px;
-        margin: 0.2rem 0;
+        margin: 1rem 0; /* Increased margin to avoid overlapping elements */
+        background: rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
     }
 
     .center-heart {
-        transform: translateY(-50%) scale(0.8); 
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.8);
+        margin: 0;
     }
 
     .event-card {
