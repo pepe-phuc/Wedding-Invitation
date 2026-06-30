@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btnLoader.classList.add('active');
 
             const targetImg = new Image();
-            targetImg.src = `assets/photobook/1 (${currentGalleryIndex}).jpg`;
+            targetImg.src = `photobook/1 (${currentGalleryIndex}).jpg`;
             
             targetImg.onload = () => {
                 btnLoader.classList.remove('active');
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cell.setAttribute('data-idx', i);
                 
                 const img = document.createElement('img');
-                img.src = `assets/photobook/1 (${i}).jpg`;
+                img.src = `photobook/1 (${i}).jpg`;
                 img.alt = `Thumb ${i}`;
                 img.loading = 'lazy';
                 
@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             [nextIdx, prevIdx].forEach(idx => {
                 const imgObj = new Image();
-                imgObj.src = `assets/photobook/1 (${idx}).jpg`;
+                imgObj.src = `photobook/1 (${idx}).jpg`;
             });
         }
 
@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
             currentGalleryIndex = index;
             
             mainDisplayImg.style.opacity = '0.3';
-            mainDisplayImg.src = `assets/photobook/1 (${currentGalleryIndex}).jpg`;
+            mainDisplayImg.src = `photobook/1 (${currentGalleryIndex}).jpg`;
             preloadAdjacentImages(currentGalleryIndex);
 
             mainDisplayImg.onload = () => {
