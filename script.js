@@ -149,11 +149,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Đổi YOUR_IMAGE_FILE_ID_X thành ID thực tế của ảnh trên Google Drive của bạn
     const driveImages = [
-        "https://photos.fife.usercontent.google.com/pw/AP1GczNyCcEpEYBgRfzZ9jOilKzp4z6IXS1qzIq_bXaZYUkkyYajGolv0Qo86lsS0T2Kq627L23mkbUB7Mtg9T31n6tWMji4IQY=w629-h419-s-no-gm?authuser=0",
-        "https://photos.fife.usercontent.google.com/pw/AP1GczPwKJL726n1HUOgi1D6eOvZdA1OZRtsMF_54CxRgyuimxlwLdmsfxLTr374GEg4tlzqIQE27zBoAVGQGjx4OvpoEPncMQY=w947-h632-s-no-gm?authuser=0",
-        "https://photos.fife.usercontent.google.com/pw/AP1GczNzd1fcMotxh2HI7YM4vjwHrdfGq3an_b26qQPtNoA-UaHG8NMWYXoR8XMBu73XYQoSHx8bIL4000ViZHwBXiMU4sTX5Ak=w159-h239-s-no-gm?authuser=0",
-        "https://photos.fife.usercontent.google.com/pw/AP1GczNWv-xR-wEh2NYoQ6tleUKub0fKsVHrfzfHLS07NIiwSIbj7yWxqHDZVbawKfVJAUHFhyB6b8C1_YsgLYmQoFxz6AnzBpc=w152-h239-s-no-gm?authuser=0",
-        "https://photos.fife.usercontent.google.com/pw/AP1GczMVG4bxLkEOt-q24A4UarJbnltm-R4QJ4O5_FjxdxMujGNYAO4kzBFIp-hJaGCkd4cQc8aDT5pA0LRFPTYzI4otdHuDIwI=w179-h239-s-no-gm?authuser=0"
+        "https://lh3.googleusercontent.com/pw/AP1GczPkIVucjsEk0OfhDTmGQYG0cjtJSNLztYzVcA4qIprW3smpLtyODORAA6hDxKMEw_QYxHVOxIgD794PArNtUIkcU1aJlRKkd_j2UXkBBW7d3zGViQal-fslBTYCKc3HJIe7fWQQNoAN1Z3nDchJLyiOJA=w615-h819-s-no-gm",
+        "https://lh3.googleusercontent.com/pw/AP1GczPmbVsk_BAtd52IU4oxJSGbPrS5CBBvxvDctOkIqHqAorjUJRwOJ3d6Ea1aJa_uUjoYw5ti0wPm_1x9f8qFPJ9L7Ohmdrh4vvJeP_e3JqDHLWHN22GviZUeRGuRFSVvc1oKTKw0YJNy03D3jvEKRj0EoQ=w212-h333-s-no-gm",
+        "https://lh3.googleusercontent.com/pw/AP1GczPpqIoF61ez2c9U_ZUOTJAsmmGU_PbcU62t1zsLO5TWaDkVKqYQ0Ot-9BaNrc-JTF5u0XysCKmhDJHDbhJn1_L2Cvyd2b1B5-RrwpZ3RGUStPzAwmW0YEeutEh--79ftdz_R_6oBTlSnzUkL_sEA7nkqw=w504-h336-s-no-gm",
+        "https://lh3.googleusercontent.com/pw/AP1GczM5A0uHZMZqtM04-1B9x4LZ301ue3YgfIyDNqdhYuTtUKcbcTeyUt3S1nYBSGDkCzsMKqceZcbXv0LEMy-r6c9ci9XUHudtCNcmGqATEuYRb2_q1-Pv9s2GMbSb1Z0Jlwc7hiK3LUEbPZXWmpR9C4vrQA=w504-h336-s-no-gm",
+        "https://lh3.googleusercontent.com/pw/AP1GczMjqQLduYBPELEQfTKl9YRG-KeIehpGYOp2QYDGiGAfWihNBHsLDHDBMEF-N1b-p7rFJzIapQkfiIdfx0JqyEoh8c_UDP9tICdpReGZzhmDT8w6RbD_Uh3ywYS907UNyrnta2QPr3AN2q2Lst0yv30OWg=w504-h336-s-no-gm"
     ];
 
     const TOTAL_PHOTOS = driveImages.length;
