@@ -159,6 +159,71 @@ document.addEventListener('DOMContentLoaded', () => {
     zoomOverlay.appendChild(zoomImg);
     document.body.appendChild(zoomOverlay);
 
+    function preloadAllGalleryImages() {
+        for (let i = 1; i <= TOTAL_PHOTOS; i++) {
+            const path = `photobook/1 (${i}).jpg`;
+            const img = new Image();
+            img.src = path;
+            preloadedImages[i] = img;
+        }
+    }
+
+    function buildGalleryStructures() {
+        const fragment = document.createDocumentFragment();
+        for (let i = 1; i <= TOTAL_PHOTOS; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'thumb-cell';
+            cell.setAttribute('data-idx', i);
+            
+            const img = document.createElement('img');
+            img.src = `photobook/1 (${i}).jpg`;
+            img.alt = `Thumb ${i}`;
+            
+            cell.appendChild(img);
+            fragment.appendChild(cell);
+        }
+        thumbnailBar.appendChild(fragment);
+
+        thumbnailBar.addEventListener('click', (e) => {
+            const cell = e.target.closest('.thumb-cell');
+            if (cell) {
+                const targetIdx = parseInt(cell.getAttribute('data-idx'));
+                switchPhoto(targetIdx, true);
+            }
+        });
+    }
+
+    function switchPhoto(index, shouldScroll = true) {
+        if (index < 1 || index > TOTAL_PHOTOS) {
+            return;
+        }
+        currentGalleryIndex = index;
+        
+        mainDisplayImg.src = preloadedImages[currentGalleryIndex].src;
+
+        const cells = thumbnailBar.querySelectorAll('.thumb-cell');
+        cells.forEach((cell) => {
+            const cellIdx = parseInt(cell.getAttribute('data-idx'));
+            if (cellIdx === currentGalleryIndex) {
+                cell.classList.add('active');
+                
+                if (shouldScroll) {
+                    requestAnimationFrame(() => {
+                        const containerWidth = thumbnailBar.clientWidth;
+                        const cellOffsetLeft = cell.offsetLeft;
+                        const cellWidth = cell.clientWidth;
+                        thumbnailBar.scrollTo({
+                            left: cellOffsetLeft - (containerWidth / 2) + (cellWidth / 2),
+                            behavior: 'smooth'
+                        });
+                    });
+                }
+            } else {
+                cell.classList.remove('active');
+            }
+        });
+    }
+
     preloadAllGalleryImages();
 
     if (openGalleryBtn && galleryModal && mainDisplayImg && thumbnailBar) {
@@ -191,71 +256,6 @@ document.addEventListener('DOMContentLoaded', () => {
         zoomOverlay.addEventListener('click', () => {
             zoomOverlay.classList.remove('active');
         });
-
-        function preloadAllGalleryImages() {
-            for (let i = 1; i <= TOTAL_PHOTOS; i++) {
-                const path = `photobook/1 (${i}).jpg`;
-                const img = new Image();
-                img.src = path;
-                preloadedImages[i] = img;
-            }
-        }
-
-        function buildGalleryStructures() {
-            const fragment = document.createDocumentFragment();
-            for (let i = 1; i <= TOTAL_PHOTOS; i++) {
-                const cell = document.createElement('div');
-                cell.className = 'thumb-cell';
-                cell.setAttribute('data-idx', i);
-                
-                const img = document.createElement('img');
-                img.src = `photobook/1 (${i}).jpg`;
-                img.alt = `Thumb ${i}`;
-                
-                cell.appendChild(img);
-                fragment.appendChild(cell);
-            }
-            thumbnailBar.appendChild(fragment);
-
-            thumbnailBar.addEventListener('click', (e) => {
-                const cell = e.target.closest('.thumb-cell');
-                if (cell) {
-                    const targetIdx = parseInt(cell.getAttribute('data-idx'));
-                    switchPhoto(targetIdx, true);
-                }
-            });
-        }
-
-        function switchPhoto(index, shouldScroll = true) {
-            if (index < 1 || index > TOTAL_PHOTOS) {
-                return;
-            }
-            currentGalleryIndex = index;
-            
-            mainDisplayImg.src = preloadedImages[currentGalleryIndex].src;
-
-            const cells = thumbnailBar.querySelectorAll('.thumb-cell');
-            cells.forEach((cell) => {
-                const cellIdx = parseInt(cell.getAttribute('data-idx'));
-                if (cellIdx === currentGalleryIndex) {
-                    cell.classList.add('active');
-                    
-                    if (shouldScroll) {
-                        requestAnimationFrame(() => {
-                            const containerWidth = thumbnailBar.clientWidth;
-                            const cellOffsetLeft = cell.offsetLeft;
-                            const cellWidth = cell.clientWidth;
-                            thumbnailBar.scrollTo({
-                                left: cellOffsetLeft - (containerWidth / 2) + (cellWidth / 2),
-                                behavior: 'smooth'
-                            });
-                        });
-                    }
-                } else {
-                    cell.classList.remove('active');
-                }
-            });
-        }
 
         if (prevBtn) {
             prevBtn.addEventListener('click', () => {
