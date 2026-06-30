@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồng Phúc & Ngọc Quỳnh - Wedding Invitation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="welcome-screen">
+        <div class="welcome-wing left-wing"></div>
+        <div class="welcome-wing right-wing"></div>
+        <div class="welcome-content">
+            <div class="welcome-title">SAVE THE DATE</div>
+            <div class="welcome-names">
+                Hồng Phúc
+                <span class="ampersand">
+                    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <!-- Nhẫn trái (Có kim cương bản dày) -->
+                        <circle cx="38" cy="56" r="22" />
+                        <circle cx="38" cy="56" r="16" />
+
+                        <!-- Điểm cắt lồng nhau -->
+                        <path d="M 52 40 A 22 22 0 0 1 52 72" stroke="currentColor" stroke-width="3" fill="none" />
+
+                        <!-- Nhẫn phải -->
+                        <circle cx="62" cy="56" r="22" />
+                        <circle cx="62" cy="56" r="16" />
+
+                        <!-- Kim cương đỉnh nhẫn trái theo hình mẫu image_121e7c.png -->
+                        <path d="M 26 34 L 50 34 L 44 24 L 32 24 Z" fill="none" stroke="currentColor"
+                            stroke-width="3" />
+                        <path d="M 32 24 L 38 34 L 44 24" fill="none" stroke="currentColor" stroke-width="2" />
+                    </svg>
+                </span>
+                Ngọc Quỳnh
+            </div>
+            <button id="btn-open-wedding" class="btn-open">MỞ THIỆP CƯỚI</button>
+        </div>
+    </div>
+    <audio id="bgMusic" loop>
+        <source src="assets/music/bg-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="musicToggle" class="music-btn" aria-label="Toggle Music">
+        <svg class="icon-music" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 18V5l12-2v13" />
+            <circle cx="6" cy="18" r="3" />
+            <circle cx="18" cy="16" r="3" />
+        </svg>
+        <div class="music-waves">
+            <span></span><span></span><span></span>
+        </div>
+    </button>
+    <nav id="nav-dots" aria-label="Section navigation">
+        <button class="dot active" data-s="0" aria-label="Section 0"></button>
+        <button class="dot" data-s="1" aria-label="Section 1"></button>
+        <button class="dot" data-s="2" aria-label="Section 2"></button>
+        <button class="dot" data-s="3" aria-label="Section 3"></button>
+    </nav>
+    <section id="sec1">
+        <h3>Thiệp Mời Trân Trọng Kính Mời</h3>
+        <div class="welcome-names">
+            Hồng Phúc
+            <span class="ampersand">
+                <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <!-- Nhẫn trái (Có kim cương bản dày) -->
+                    <circle cx="38" cy="56" r="22" />
+                    <circle cx="38" cy="56" r="16" />
+
+                    <!-- Điểm cắt lồng nhau -->
+                    <path d="M 52 40 A 22 22 0 0 1 52 72" stroke="currentColor" stroke-width="3" fill="none" />
+
+                    <!-- Nhẫn phải -->
+                    <circle cx="62" cy="56" r="22" />
+                    <circle cx="62" cy="56" r="16" />
+
+                    <!-- Kim cương đỉnh nhẫn trái theo hình mẫu image_121e7c.png -->
+                    <path d="M 26 34 L 50 34 L 44 24 L 32 24 Z" fill="none" stroke="currentColor" stroke-width="3" />
+                    <path d="M 32 24 L 38 34 L 44 24" fill="none" stroke="currentColor" stroke-width="2" />
+                </svg>
+            </span>
+            Ngọc Quỳnh
+        </div>
+        <div class="date">01 . 08 . 2026</div>
+        <div class="countdown-wrapper">
+
+            <div class="ornament left">
+                <svg viewBox="0 0 60 160" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+                        <path d="M30 155V20" />
+                        <path d="M30 120c-10-12-18-20-24-22 5 10 11 18 22 25" />
+                        <path d="M30 95c10-12 18-20 24-22-5 10-11 18-22 25" />
+                        <path d="M30 70c-10-10-16-16-22-18 4 8 10 15 20 20" />
+                        <path d="M30 50c10-10 16-16 22-18-4 8-10 15-20 20" />
+                        <circle cx="30" cy="14" r="4" />
+                    </g>
+                </svg>
+            </div>
+
+            <div class="countdown-content">
+                <div class="countdown-title">ĐẾM NGƯỢC ĐẾN NGÀY TRỌNG ĐẠI</div>
+
+                <div class="countdown-container">
+                    <div class="countdown-item">
+                        <span class="num" id="days">36</span>
+                        <span class="label">Ngày</span>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="countdown-item">
+                        <span class="num" id="hours">12</span>
+                        <span class="label">Giờ</span>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="countdown-item">
+                        <span class="num" id="minutes">45</span>
+                        <span class="label">Phút</span>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="countdown-item">
+                        <span class="num" id="seconds">18</span>
+                        <span class="label">Giây</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ornament right">
+                <svg viewBox="0 0 60 160" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(60 0) scale(-1 1)" fill="none" stroke="currentColor" stroke-width="1.4"
+                        stroke-linecap="round">
+                        <path d="M30 155V20" />
+                        <path d="M30 120c-10-12-18-20-24-22 5 10 11 18 22 25" />
+                        <path d="M30 95c10-12 18-20 24-22-5 10-11 18-22 25" />
+                        <path d="M30 70c-10-10-16-16-22-18 4 8 10 15 20 20" />
+                        <path d="M30 50c10-10 16-16 22-18-4 8-10 15-20 20" />
+                        <circle cx="30" cy="14" r="4" />
+                    </g>
+                </svg>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="sec2">
+        <div class="story-container">
+            <div class="image-wrapper">
+                <img class="story-img" src="https://lh3.googleusercontent.com/pw/AP1GczMzr1jVH2biUUjI-Pk38NeSi1RvS1LTulamZ1x9Luztn_UCNwYX9vnYK-GKie9lW89uOmsP_6XKEhpKVutCFVSCEDIHDTbYxRpaNjTYg9UX1_hERCcTQR7yypjpI0cJ7KNx6o8VOfgDWI5kbe-Uy4yRvQ=w554-h831-s-no-gm" alt="Wedding">
+            </div>
+            <div class="story-content">
+                <div class="story-heart">♥</div>
+                <h3>Câu chuyện của chúng tôi</h3>
+                <h2>Từ những điều nhỏ bé<br>ta cùng nhau đi tiếp quãng đường dài</h2>
+                <p>Cảm ơn vì đã xuất hiện trong cuộc đời nhau, để cùng viết nên câu chuyện tình yêu đẹp nhất bằng sự
+                    thấu hiểu, tôn trọng và yêu thương.</p>
+                <button class="btn" id="openGalleryBtn">Thư Viện Ảnh</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="sec3">
+        <div class="section-title-container">
+            <h2>Thông Tin Sự Kiện</h2>
+            <div class="title-heart">♥</div>
+        </div>
+
+        <div class="events-wrapper">
+            <div class="event-card">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" />
+                        <path d="M16 2v4M8 2v4M3 10h18" />
+                    </svg>
+                </div>
+                <h3>LỄ THÀNH HÔN</h3>
+                <div class="heart-divider">♥</div>
+
+                <div class="event-sub-item">
+                    <div class="time">09:00 - 01 . 08 . 2026</div>
+                    <div class="place">Tư gia nhà gái</div>
+                    <div class="address">262/52 Lê Văn Sỹ, P. Nhiêu Lộc, TP.HCM</div>
+                </div>
+
+                <div class="event-sub-item" style="margin-top: 1.5rem;">
+                    <div class="time">11:00 - 01 . 08 . 2026</div>
+                    <div class="place">Tư gia nhà trai</div>
+                    <div class="address">169/17 Trần Văn Đang, P. Nhiêu Lộc, TP.HCM</div>
+                </div>
+            </div>
+
+            <div class="center-divider">
+                <div class="center-heart">♥</div>
+            </div>
+
+            <div class="event-card">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <circle cx="9" cy="14" r="5" />
+                        <circle cx="15" cy="10" r="4" />
+                    </svg>
+                </div>
+                <h3>TIỆC CƯỚI</h3>
+                <div class="heart-divider">♥</div>
+                <div class="time">18:00 - 01 . 08 . 2026</div>
+                <div class="place">Diamond Place II - Âu Cơ</div>
+                <div class="address">584 Âu Cơ, Bảy Hiền, Hồ Chí Minh</div>
+            </div>
+        </div>
+
+        <a href="https://maps.google.com/?q=584+Au+Co,+Bay+Hien,+Ho+Chi+Minh" target="_blank" class="btn btn-map">Xem
+            Bản Đồ</a>
+    </section>
+
+    <section id="sec4">
+        <h2>Lời Chúc Đến Cô Dâu & Chú Rể</h2>
+        <form class="wish-form" id="wishForm">
+            <div class="form-group">
+                <input type="text" id="name" placeholder="Tên của bạn" required>
+            </div>
+            <div class="form-group">
+                <textarea id="message" placeholder="Lời chúc của bạn" required></textarea>
+            </div>
+            <label class="form-checkbox">
+                <input type="checkbox" id="attend"> Tôi sẽ tham dự
+            </label>
+            <button type="submit" class="btn">Gửi Lời Chúc</button>
+        </form>
+    </section>
+    <div id="galleryModal" class="gallery-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-wrapper">
+            <button class="modal-close">&times;</button>
+            
+            <div class="main-display">
+                <button class="nav-btn prev-btn">&lsaquo;</button>
+                <div class="stage-container">
+                    <img id="mainDisplayImg" src="" alt="Active Photo">
+                </div>
+                <button class="nav-btn next-btn">&rsaquo;</button>
+            </div>
+
+            <div id="galleryThumbnails" class="thumbnail-bar"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
