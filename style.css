@@ -45,6 +45,7 @@ html {
     transition: visibility 1.2s ease;
 }
 
+/* Optimization: Will-change transform added for hardware acceleration */
 .welcome-wing {
     position: absolute;
     top: 0;
@@ -55,6 +56,7 @@ html {
     background-repeat: no-repeat;
     transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
     z-index: 1;
+    will-change: transform;
 }
 
 .left-wing {
@@ -83,6 +85,7 @@ html {
     box-shadow: 0 10px 40px rgba(74, 62, 61, 0.08);
     max-width: 480px;
     width: 90%;
+    will-change: opacity, transform;
 }
 
 .welcome-title {
@@ -203,12 +206,14 @@ html {
     transition: opacity 0.3s ease;
 }
 
+/* Optimization: Will-change transform added for hardware accelerated scaling */
 .music-waves span {
     width: 2px;
     height: 100%;
     background-color: #4a3e3d;
     animation: bounce 0.8s infinite ease-in-out alternate;
     transform-origin: bottom;
+    will-change: transform;
 }
 
 .music-waves span:nth-child(2) { animation-delay: 0.2s; }
@@ -902,6 +907,7 @@ section {
     pointer-events: auto;
 }
 
+/* Optimization: Will-change transform added for hardware accelerated spinner rotation */
 .gallery-btn-loader::after {
     content: "";
     width: 40px;
@@ -910,6 +916,7 @@ section {
     border-radius: 50%;
     border-top-color: var(--accent);
     animation: globalBtnSpin 0.7s linear infinite;
+    will-change: transform;
 }
 
 @keyframes globalBtnSpin {
@@ -942,6 +949,7 @@ section {
     pointer-events: auto;
 }
 
+/* Optimization: Will-change transform added for hardware accelerated spinner rotation */
 .form-loader::after {
     content: "";
     width: 35px;
@@ -950,6 +958,7 @@ section {
     border-radius: 50%;
     border-top-color: var(--accent);
     animation: formSpin 0.6s linear infinite;
+    will-change: transform;
 }
 
 @keyframes formSpin {

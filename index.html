@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hồng Phúc & Ngọc Quỳnh - Wedding Invitation</title>
+    <link rel="preload" href="image/bg-sec2.png" as="image">
+    <link rel="preload" href="/image/bg-sec1.png" as="image">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -19,18 +21,11 @@
                 <span class="ampersand">
                     <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
                         stroke-linejoin="round">
-                        <!-- Nhẫn trái (Có kim cương bản dày) -->
                         <circle cx="38" cy="56" r="22" />
                         <circle cx="38" cy="56" r="16" />
-
-                        <!-- Điểm cắt lồng nhau -->
                         <path d="M 52 40 A 22 22 0 0 1 52 72" stroke="currentColor" stroke-width="3" fill="none" />
-
-                        <!-- Nhẫn phải -->
                         <circle cx="62" cy="56" r="22" />
                         <circle cx="62" cy="56" r="16" />
-
-                        <!-- Kim cương đỉnh nhẫn trái theo hình mẫu image_121e7c.png -->
                         <path d="M 26 34 L 50 34 L 44 24 L 32 24 Z" fill="none" stroke="currentColor"
                             stroke-width="3" />
                         <path d="M 32 24 L 38 34 L 44 24" fill="none" stroke="currentColor" stroke-width="2" />
@@ -68,18 +63,11 @@
             <span class="ampersand">
                 <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
                     stroke-linejoin="round">
-                    <!-- Nhẫn trái (Có kim cương bản dày) -->
                     <circle cx="38" cy="56" r="22" />
                     <circle cx="38" cy="56" r="16" />
-
-                    <!-- Điểm cắt lồng nhau -->
                     <path d="M 52 40 A 22 22 0 0 1 52 72" stroke="currentColor" stroke-width="3" fill="none" />
-
-                    <!-- Nhẫn phải -->
                     <circle cx="62" cy="56" r="22" />
                     <circle cx="62" cy="56" r="16" />
-
-                    <!-- Kim cương đỉnh nhẫn trái theo hình mẫu image_121e7c.png -->
                     <path d="M 26 34 L 50 34 L 44 24 L 32 24 Z" fill="none" stroke="currentColor" stroke-width="3" />
                     <path d="M 32 24 L 38 34 L 44 24" fill="none" stroke="currentColor" stroke-width="2" />
                 </svg>
@@ -238,14 +226,14 @@
     <div id="galleryModal" class="gallery-modal">
         <div class="modal-overlay"></div>
         <div class="modal-wrapper">
-            <button class="modal-close">&times;</button>
+            <button class="modal-close">×</button>
             
             <div class="main-display">
-                <button class="nav-btn prev-btn">&lsaquo;</button>
+                <button class="nav-btn prev-btn">‹</button>
                 <div class="stage-container">
                     <img id="mainDisplayImg" src="" alt="Active Photo">
                 </div>
-                <button class="nav-btn next-btn">&rsaquo;</button>
+                <button class="nav-btn next-btn">›</button>
             </div>
 
             <div id="galleryThumbnails" class="thumbnail-bar"></div>
