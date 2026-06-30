@@ -134,7 +134,7 @@ sections.forEach((section) => {
     observer.observe(section);
 });
 
-// Gallery Modal Functionality - Full Preload Strategy for Landing Page
+// Gallery Modal Functionality - 5 Photos from Google Drive
 document.addEventListener('DOMContentLoaded', () => {
     const openGalleryBtn = document.getElementById('openGalleryBtn');
     const galleryModal = document.getElementById('galleryModal');
@@ -145,8 +145,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevBtn = galleryModal ? galleryModal.querySelector('.prev-btn') : null;
     const nextBtn = galleryModal ? galleryModal.querySelector('.next-btn') : null;
 
-    let currentGalleryIndex = 1;
-    const TOTAL_PHOTOS = 27;
+    let currentGalleryIndex = 0;
+    
+    // Đổi YOUR_IMAGE_FILE_ID_X thành ID thực tế của ảnh trên Google Drive của bạn
+    const driveImages = [
+        "https://photos.fife.usercontent.google.com/pw/AP1GczNyCcEpEYBgRfzZ9jOilKzp4z6IXS1qzIq_bXaZYUkkyYajGolv0Qo86lsS0T2Kq627L23mkbUB7Mtg9T31n6tWMji4IQY=w629-h419-s-no-gm?authuser=0",
+        "https://photos.fife.usercontent.google.com/pw/AP1GczPwKJL726n1HUOgi1D6eOvZdA1OZRtsMF_54CxRgyuimxlwLdmsfxLTr374GEg4tlzqIQE27zBoAVGQGjx4OvpoEPncMQY=w947-h632-s-no-gm?authuser=0",
+        "https://photos.fife.usercontent.google.com/pw/AP1GczNzd1fcMotxh2HI7YM4vjwHrdfGq3an_b26qQPtNoA-UaHG8NMWYXoR8XMBu73XYQoSHx8bIL4000ViZHwBXiMU4sTX5Ak=w159-h239-s-no-gm?authuser=0",
+        "https://photos.fife.usercontent.google.com/pw/AP1GczNWv-xR-wEh2NYoQ6tleUKub0fKsVHrfzfHLS07NIiwSIbj7yWxqHDZVbawKfVJAUHFhyB6b8C1_YsgLYmQoFxz6AnzBpc=w152-h239-s-no-gm?authuser=0",
+        "https://photos.fife.usercontent.google.com/pw/AP1GczMVG4bxLkEOt-q24A4UarJbnltm-R4QJ4O5_FjxdxMujGNYAO4kzBFIp-hJaGCkd4cQc8aDT5pA0LRFPTYzI4otdHuDIwI=w179-h239-s-no-gm?authuser=0"
+    ];
+
+    const TOTAL_PHOTOS = driveImages.length;
     const preloadedImages = {};
 
     const btnLoader = document.createElement('div');
@@ -160,24 +170,28 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(zoomOverlay);
 
     function preloadAllGalleryImages() {
-        for (let i = 1; i <= TOTAL_PHOTOS; i++) {
-            const path = `photobook/1 (${i}).jpg`;
+        for (let i = 0; i < TOTAL_PHOTOS; i++) {
             const img = new Image();
-            img.src = path;
+            img.src = driveImages[i];
             preloadedImages[i] = img;
         }
     }
 
     function buildGalleryStructures() {
+        if (!thumbnailBar) {
+            return;
+        }
+        thumbnailBar.innerHTML = '';
         const fragment = document.createDocumentFragment();
-        for (let i = 1; i <= TOTAL_PHOTOS; i++) {
+        
+        for (let i = 0; i < TOTAL_PHOTOS; i++) {
             const cell = document.createElement('div');
             cell.className = 'thumb-cell';
             cell.setAttribute('data-idx', i);
             
             const img = document.createElement('img');
-            img.src = `photobook/1 (${i}).jpg`;
-            img.alt = `Thumb ${i}`;
+            img.src = driveImages[i];
+            img.alt = `Thumb ${i + 1}`;
             
             cell.appendChild(img);
             fragment.appendChild(cell);
@@ -187,14 +201,14 @@ document.addEventListener('DOMContentLoaded', () => {
         thumbnailBar.addEventListener('click', (e) => {
             const cell = e.target.closest('.thumb-cell');
             if (cell) {
-                const targetIdx = parseInt(cell.getAttribute('data-idx'));
+                const targetIdx = parseInt(cell.getAttribute('data-idx'), 10);
                 switchPhoto(targetIdx, true);
             }
         });
     }
 
     function switchPhoto(index, shouldScroll = true) {
-        if (index < 1 || index > TOTAL_PHOTOS) {
+        if (index < 0 || index >= TOTAL_PHOTOS || !mainDisplayImg) {
             return;
         }
         currentGalleryIndex = index;
@@ -203,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const cells = thumbnailBar.querySelectorAll('.thumb-cell');
         cells.forEach((cell) => {
-            const cellIdx = parseInt(cell.getAttribute('data-idx'));
+            const cellIdx = parseInt(cell.getAttribute('data-idx'), 10);
             if (cellIdx === currentGalleryIndex) {
                 cell.classList.add('active');
                 
@@ -228,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (openGalleryBtn && galleryModal && mainDisplayImg && thumbnailBar) {
         buildGalleryStructures();
-        switchPhoto(1, false);
+        switchPhoto(0, false);
 
         openGalleryBtn.addEventListener('click', () => {
             galleryModal.classList.add('active');
@@ -260,8 +274,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (prevBtn) {
             prevBtn.addEventListener('click', () => {
                 let targetIdx = currentGalleryIndex - 1;
-                if (targetIdx < 1) {
-                    targetIdx = TOTAL_PHOTOS;
+                if (targetIdx < 0) {
+                    targetIdx = TOTAL_PHOTOS - 1;
                 }
                 switchPhoto(targetIdx, true);
             });
@@ -270,8 +284,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (nextBtn) {
             nextBtn.addEventListener('click', () => {
                 let targetIdx = currentGalleryIndex + 1;
-                if (targetIdx > TOTAL_PHOTOS) {
-                    targetIdx = 1;
+                if (targetIdx >= TOTAL_PHOTOS) {
+                    targetIdx = 0;
                 }
                 switchPhoto(targetIdx, true);
             });
