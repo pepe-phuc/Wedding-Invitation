@@ -44,6 +44,10 @@ function pauseAudio() {
 
 // Countdown Timer
 const targetDate = new Date('August 1, 2026 00:00:00').getTime();
+const daysEl = document.getElementById('days');
+const hoursEl = document.getElementById('hours');
+const minutesEl = document.getElementById('minutes');
+const secondsEl = document.getElementById('seconds');
 
 const countdown = setInterval(() => {
     const now = new Date().getTime();
@@ -59,13 +63,13 @@ const countdown = setInterval(() => {
     const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
     const s = Math.floor((difference % (1000 * 60)) / 1000);
 
-    document.getElementById('days').innerText = d < 10 ? '0' + d : d;
-    document.getElementById('hours').innerText = h < 10 ? '0' + h : h;
-    document.getElementById('minutes').innerText = m < 10 ? '0' + m : m;
-    document.getElementById('seconds').innerText = s < 10 ? '0' + s : s;
+    if (daysEl) { daysEl.innerText = d < 10 ? '0' + d : d; }
+    if (hoursEl) { hoursEl.innerText = h < 10 ? '0' + h : h; }
+    if (minutesEl) { minutesEl.innerText = m < 10 ? '0' + m : m; }
+    if (secondsEl) { secondsEl.innerText = s < 10 ? '0' + s : s; }
 }, 1000);
 
-// Navigation Controls
+// Navigation Controls - Optimized using IntersectionObserver instead of scroll listener
 const sections = document.querySelectorAll('section');
 const dots = document.querySelectorAll('#nav-dots .dot');
 let isScrolling = false;
@@ -85,7 +89,6 @@ function scrollToSection(index) {
     }
     isScrolling = true;
     
-    // Use scrollIntoView on the element directly for better browser compatibility
     sections[index].scrollIntoView({
         behavior: 'smooth',
         block: 'start'
@@ -110,8 +113,8 @@ function updateActiveDot(index) {
 
 const observerOptions = {
     root: null,
-    rootMargin: '-10% 0px -10% 0px',
-    threshold: 0.4
+    rootMargin: '-50% 0px -50% 0px',
+    threshold: 0
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -131,7 +134,7 @@ sections.forEach((section) => {
     observer.observe(section);
 });
 
-// Gallery Modal Functionality - High Performance Optimized with Full Background Spinner
+// Gallery Modal Functionality - Full Preload Strategy for Landing Page
 document.addEventListener('DOMContentLoaded', () => {
     const openGalleryBtn = document.getElementById('openGalleryBtn');
     const galleryModal = document.getElementById('galleryModal');
@@ -144,8 +147,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentGalleryIndex = 1;
     const TOTAL_PHOTOS = 27;
+    const preloadedImages = {};
 
-    // Create Fullscreen Backdrop Spinner Dynamically
     const btnLoader = document.createElement('div');
     btnLoader.className = 'gallery-btn-loader';
     document.body.appendChild(btnLoader);
@@ -156,29 +159,16 @@ document.addEventListener('DOMContentLoaded', () => {
     zoomOverlay.appendChild(zoomImg);
     document.body.appendChild(zoomOverlay);
 
+    preloadAllGalleryImages();
+
     if (openGalleryBtn && galleryModal && mainDisplayImg && thumbnailBar) {
         buildGalleryStructures();
         switchPhoto(1, false);
 
         openGalleryBtn.addEventListener('click', () => {
-            btnLoader.classList.add('active');
-
-            const targetImg = new Image();
-            targetImg.src = `photobook/1 (${currentGalleryIndex}).jpg`;
-            
-            targetImg.onload = () => {
-                btnLoader.classList.remove('active');
-                galleryModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                switchPhoto(currentGalleryIndex, false);
-            };
-
-            targetImg.onerror = () => {
-                btnLoader.classList.remove('active');
-                galleryModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                switchPhoto(currentGalleryIndex, false);
-            };
+            galleryModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            switchPhoto(currentGalleryIndex, false);
         });
 
         const closeGallery = () => {
@@ -202,6 +192,15 @@ document.addEventListener('DOMContentLoaded', () => {
             zoomOverlay.classList.remove('active');
         });
 
+        function preloadAllGalleryImages() {
+            for (let i = 1; i <= TOTAL_PHOTOS; i++) {
+                const path = `photobook/1 (${i}).jpg`;
+                const img = new Image();
+                img.src = path;
+                preloadedImages[i] = img;
+            }
+        }
+
         function buildGalleryStructures() {
             const fragment = document.createDocumentFragment();
             for (let i = 1; i <= TOTAL_PHOTOS; i++) {
@@ -212,7 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const img = document.createElement('img');
                 img.src = `photobook/1 (${i}).jpg`;
                 img.alt = `Thumb ${i}`;
-                img.loading = 'lazy';
                 
                 cell.appendChild(img);
                 fragment.appendChild(cell);
@@ -228,29 +226,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        function preloadAdjacentImages(centerIndex) {
-            const nextIdx = centerIndex === TOTAL_PHOTOS ? 1 : centerIndex + 1;
-            const prevIdx = centerIndex === 1 ? TOTAL_PHOTOS : centerIndex - 1;
-            
-            [nextIdx, prevIdx].forEach(idx => {
-                const imgObj = new Image();
-                imgObj.src = `photobook/1 (${idx}).jpg`;
-            });
-        }
-
         function switchPhoto(index, shouldScroll = true) {
             if (index < 1 || index > TOTAL_PHOTOS) {
                 return;
             }
             currentGalleryIndex = index;
             
-            mainDisplayImg.style.opacity = '0.3';
-            mainDisplayImg.src = `photobook/1 (${currentGalleryIndex}).jpg`;
-            preloadAdjacentImages(currentGalleryIndex);
-
-            mainDisplayImg.onload = () => {
-                mainDisplayImg.style.opacity = '1';
-            };
+            mainDisplayImg.src = preloadedImages[currentGalleryIndex].src;
 
             const cells = thumbnailBar.querySelectorAll('.thumb-cell');
             cells.forEach((cell) => {
@@ -259,12 +241,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     cell.classList.add('active');
                     
                     if (shouldScroll) {
-                        const containerWidth = thumbnailBar.clientWidth;
-                        const cellOffsetLeft = cell.offsetLeft;
-                        const cellWidth = cell.clientWidth;
-                        thumbnailBar.scrollTo({
-                            left: cellOffsetLeft - (containerWidth / 2) + (cellWidth / 2),
-                            behavior: 'smooth'
+                        requestAnimationFrame(() => {
+                            const containerWidth = thumbnailBar.clientWidth;
+                            const cellOffsetLeft = cell.offsetLeft;
+                            const cellWidth = cell.clientWidth;
+                            thumbnailBar.scrollTo({
+                                left: cellOffsetLeft - (containerWidth / 2) + (cellWidth / 2),
+                                behavior: 'smooth'
+                            });
                         });
                     }
                 } else {
@@ -300,7 +284,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const wishForm = document.getElementById('wishForm');
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxqYrY-zBrPAbxSltrFfzA981SGeY-AQNCrf3rQ5JINTsKbuWTV-_q32uEIEgwiQCDIbw/exec';
 
-    // Create Form Screen Loader Dynamically
     const formLoader = document.createElement('div');
     formLoader.className = 'form-loader';
     document.body.appendChild(formLoader);
@@ -308,7 +291,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (wishForm) {
         wishForm.addEventListener('submit', (e) => {
             e.preventDefault();
-
             formLoader.classList.add('active');
 
             const formData = {
