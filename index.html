@@ -187,7 +187,7 @@
                 <div class="event-sub-item">
                     <div class="time">09:00 - 01 . 08 . 2026</div>
                     <div class="place">Tư gia nhà gái</div>
-                    <div class="address">262/52 Lê Văn Sỹ, P. Nhiêu Lộc, TP.HCM</div>
+                    <div class="address">262/55 Lê Văn Sỹ, P. Nhiêu Lộc, TP.HCM</div>
                 </div>
 
                 <div class="event-sub-item" style="margin-top: 1.5rem;">
@@ -237,9 +237,14 @@
             <div class="form-group">
                 <textarea id="message" placeholder="Lời chúc của bạn"></textarea>
             </div>
-            <label class="form-checkbox">
-                <input type="checkbox" id="attend"> Tôi sẽ tham dự
-            </label>
+            <div class="form-radio-group">
+                <label class="form-checkbox">
+                    <input type="radio" name="attendance_option" id="attend" value="Có tham dự" checked> Chắc chắn sẽ đến chung vui cùng hai bạn!
+                </label>
+                <label class="form-checkbox">
+                    <input type="radio" name="attendance_option" id="notAttend" value="Không tham dự"> Tiếc quá, mình xin gửi lời chúc từ xa nhé!
+                </label>
+            </div>
             <button type="submit" class="btn">Gửi Lời Chúc</button>
         </form>
     </section>
