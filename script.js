@@ -302,14 +302,43 @@ document.addEventListener('DOMContentLoaded', () => {
     formLoader.className = 'form-loader';
     document.body.appendChild(formLoader);
 
-    if (wishForm) {
+    const hasSubmitted = localStorage.getItem('wedding_wish_submitted');
+
+    if (hasSubmitted && wishForm) {
+        disableWishForm();
+    }
+
+    if (wishForm && !hasSubmitted) {
         wishForm.addEventListener('submit', (e) => {
             e.preventDefault();
+
+            const nameInput = document.getElementById('name');
+            const messageInput = document.getElementById('message');
+
+            const nameValue = nameInput ? nameInput.value.trim() : '';
+            const messageValue = messageInput ? messageInput.value.trim() : '';
+
+            if (nameValue === '') {
+                showToast('Vui lòng nhập tên của bạn', 'error');
+                if (nameInput) {
+                    nameInput.focus();
+                }
+                return;
+            }
+
+            if (messageValue === '') {
+                showToast('Vui lòng nhập lời chúc', 'error');
+                if (messageInput) {
+                    messageInput.focus();
+                }
+                return;
+            }
+
             formLoader.classList.add('active');
 
             const formData = {
-                name: document.getElementById('name').value,
-                message: document.getElementById('message').value,
+                name: nameValue,
+                message: messageValue,
                 attendance: document.getElementById('attend').checked ? 'Có tham dự' : 'Không tham dự'
             };
 
@@ -322,15 +351,59 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(formData)
             })
             .then(() => {
-                alert('Gửi lời chúc thành công!');
+                showToast('Gửi lời chúc thành công!', 'success');
+                localStorage.setItem('wedding_wish_submitted', 'true');
                 wishForm.reset();
+                disableWishForm();
             })
             .catch((error) => {
                 console.error('Error:', error);
+                showToast('Có lỗi xảy ra, vui lòng thử lại', 'error');
             })
             .finally(() => {
                 formLoader.classList.remove('active');
             });
         });
     }
+
+    function disableWishForm() {
+        if (!wishForm) {
+            return;
+        }
+        wishForm.innerHTML = `
+            <div class="form-submitted-message">
+                <div class="submitted-icon">♥</div>
+                <h3>Cảm ơn bạn rất nhiều!</h3>
+                <p>Lời chúc ý nghĩa của bạn đã được gửi đến cô dâu và chú rể.</p>
+            </div>
+        `;
+    }
 });
+function showToast(message, type = 'success') {
+    let container = document.getElementById('toast-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'toast-container';
+        document.body.appendChild(container);
+    }
+
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.innerText = message;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 10);
+
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+            toast.remove();
+            if (container.childNodes.length === 0) {
+                container.remove();
+            }
+        }, 300);
+    }, 3000);
+}
