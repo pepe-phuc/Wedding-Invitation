@@ -260,22 +260,49 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (prevBtn) {
+            let isTransitioning = false;
             prevBtn.addEventListener('click', () => {
+                event.preventDefault();
+                 if (isTransitioning) {
+                    return;
+                }
+
+                isTransitioning = true;
                 let targetIdx = currentGalleryIndex - 1;
                 if (targetIdx < 0) {
                     targetIdx = TOTAL_PHOTOS - 1;
                 }
                 switchPhoto(targetIdx, true);
+                // Replace 300 with the exact duration of your switchPhoto animation/transition
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 300); 
             });
         }
 
         if (nextBtn) {
-            nextBtn.addEventListener('click', () => {
+            let isTransitioning = false;
+
+            nextBtn.addEventListener('click', (event) => {
+                // Prevent default double-tap zoom behavior on mobile
+                event.preventDefault();
+
+                if (isTransitioning) {
+                    return;
+                }
+
+                isTransitioning = true;
+                
                 let targetIdx = currentGalleryIndex + 1;
                 if (targetIdx >= TOTAL_PHOTOS) {
                     targetIdx = 0;
                 }
                 switchPhoto(targetIdx, true);
+
+                // Replace 300 with the exact duration of your switchPhoto animation/transition
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 300); 
             });
         }
 
