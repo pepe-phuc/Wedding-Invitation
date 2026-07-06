@@ -28,7 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
         "https://lh3.googleusercontent.com/pw/AP1GczPmbVsk_BAtd52IU4oxJSGbPrS5CBBvxvDctOkIqHqAorjUJRwOJ3d6Ea1aJa_uUjoYw5ti0wPm_1x9f8qFPJ9L7Ohmdrh4vvJeP_e3JqDHLWHN22GviZUeRGuRFSVvc1oKTKw0YJNy03D3jvEKRj0EoQ=w212-h333-s-no-gm",
         "https://lh3.googleusercontent.com/pw/AP1GczPpqIoF61ez2c9U_ZUOTJAsmmGU_PbcU62t1zsLO5TWaDkVKqYQ0Ot-9BaNrc-JTF5u0XysCKmhDJHDbhJn1_L2Cvyd2b1B5-RrwpZ3RGUStPzAwmW0YEeutEh--79ftdz_R_6oBTlSnzUkL_sEA7nkqw=w504-h336-s-no-gm",
         "https://lh3.googleusercontent.com/pw/AP1GczM5A0uHZMZqtM04-1B9x4LZ301ue3YgfIyDNqdhYuTtUKcbcTeyUt3S1nYBSGDkCzsMKqceZcbXv0LEMy-r6c9ci9XUHudtCNcmGqATEuYRb2_q1-Pv9s2GMbSb1Z0Jlwc7hiK3LUEbPZXWmpR9C4vrQA=w504-h336-s-no-gm",
-        "https://lh3.googleusercontent.com/pw/AP1GczMjqQLduYBPELEQfTKl9YRG-KeIehpGYOp2QYDGiGAfWihNBHsLDHDBMEF-N1b-p7rFJzIapQkfiIdfx0JqyEoh8c_UDP9tICdpReGZzhmDT8w6RbD_Uh3ywYS907UNyrnta2QPr3AN2q2Lst0yv30OWg=w504-h336-s-no-gm"
+        "https://lh3.googleusercontent.com/pw/AP1GczMjqQLduYBPELEQfTKl9YRG-KeIehpGYOp2QYDGiGAfWihNBHsLDHDBMEF-N1b-p7rFJzIapQkfiIdfx0JqyEoh8c_UDP9tICdpReGZzhmDT8w6RbD_Uh3ywYS907UNyrnta2QPr3AN2q2Lst0yv30OWg=w504-h336-s-no-gm",
+        "https://lh3.googleusercontent.com/pw/AP1GczMTtvQOtdKBgWKemnSIgQ5Nx9UtTMHiApv0hEcgLsWIV7yVQ91p0PPKMSSe36HGmO69VXpY2aE-HesSNQeKbZivnuBTt-JMhfuY8Z2kEvkf3kDFTYfe9fCzlJUx69O9l94q_EEuw3-DoYVW3HI6uPiepg=w242-h161-s-no-gm",
+        "https://lh3.googleusercontent.com/pw/AP1GczPzpSr5HdiT8w4pDkZ0sbO5ZSZKN5y7FeKR-NyrjG5lNp_sNXpL2kk-X6K3sscG4wsOlAF2eLJcQ9-pPgQdwyFYMG4ZpiGlSJJuZxr4emDOIytq_yD1jU7ErYla2rTg38HaChg5wMxDmyPWnUNGoQ-qSQ=w107-h161-s-no-gm",
+        "https://lh3.googleusercontent.com/pw/AP1GczPq6RXNQoujLNPT-wj2vptkHzdpHKqjd0ne0VHx7v9bYQEK84A0PuVtX50nKgPYZz69lBHvN8x2eTUNyJozsLPqc8phh3DXqb9_TwVYDMPFB_OwMxSrO-4v3uKsP7Aj4Qa7Y_9TK39kOwszo7Lr78vi5w=w168-h252-s-no-gm",
+        "https://lh3.googleusercontent.com/pw/AP1GczP5MBfMg_Zz9kbZja93lvIe1QvWYkvuo5tp1l0kBO7HmmDY8hC5ZR5JJjHU71ukgyjgVr45iKlGDP7AyMiXBMxYbAxMn9itFz-tSIezCkA7evfQYdUjN5VAxmIDwIdeamRp1lrcfe8KABGp3cVuL3NUpw=w168-h252-s-no-gm",
+        "https://lh3.googleusercontent.com/pw/AP1GczOCDfYNsw62L4w6XSmOyiRwV-QlG5EtrfWdQr3SbGqMR0iY17L8xYkeoHGIafMcVAanZRjit_Y0mNLpTnlmFLN6qUlLmDJcsi66H3g_xGqMtmfKkE4JA_loMJ-eg0aTEbXD0PensTjUIbqcoELkYBq8yw=w378-h252-s-no-gm"
     ];
     const TOTAL_PHOTOS = driveImages.length;
 
