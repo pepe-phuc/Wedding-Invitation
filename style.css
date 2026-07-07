@@ -537,6 +537,7 @@ section {
     color: #6e605f;
     margin-bottom: 2rem;
     font-weight: 300;
+    font-family: var(--font-sans);
 }
 
 #sec3 {
